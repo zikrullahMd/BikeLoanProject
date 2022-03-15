@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using DataAccess;
+using BikeLoanProject.Controllers;
 
 namespace BikeLoanProject.Controllers
 {
@@ -13,13 +14,25 @@ namespace BikeLoanProject.Controllers
         private static BikeLoanDBEntities entities = new BikeLoanDBEntities(); 
         
         [HttpPost]
-        public HttpResponseMessage addUser([FromBody] User user)
+        public HttpResponseMessage signup(User user)
         {
             entities.Users.Add(user);
             entities.SaveChanges();
-            var message = Request.CreateResponse(HttpStatusCode.OK,user);
+            var message = Request.CreateResponse(HttpStatusCode.OK,"user added");
             message.Headers.Location = new Uri(Request.RequestUri+" "+user.email);
             return message;
+        }
+
+        public bool login(string email, string pass)
+        {
+            AuthController auth = new AuthController();
+            Login login = new Login()
+            {
+                email = email,
+                password = pass
+            };
+
+            return auth.isUserPresent(login);
         }
         
         [HttpGet]
