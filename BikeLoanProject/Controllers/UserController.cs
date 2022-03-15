@@ -56,7 +56,7 @@ namespace BikeLoanProject.Controllers
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound,"No user found with this email");
             }
-            //users.email = user.email;
+            
             users.password = user.password;
             users.username = user.username;
             users.mobileNumber = user.mobileNumber;
