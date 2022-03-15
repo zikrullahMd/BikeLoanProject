@@ -52,11 +52,11 @@ namespace BikeLoanProject.Controllers
         public HttpResponseMessage editUser(string email, [FromBody] User user)
         {
             User users = entities.Users.FirstOrDefault(us => us.email == email);
-            if(user == null)
+            if(users == null)
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound,"No user found with this email");
             }
-            users.email = user.email;
+            //users.email = user.email;
             users.password = user.password;
             users.username = user.username;
             users.mobileNumber = user.mobileNumber;
@@ -78,8 +78,13 @@ namespace BikeLoanProject.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, " No user found with this email");
             }
 
-            entities.Users.Remove(users);
+            entities.Users.Remove(entities.Users.FirstOrDefault(x=>x.email == email));
             entities.SaveChanges();
+
+            var message = Request.CreateResponse(HttpStatusCode.OK, users);
+            message.Headers.Location = new Uri(Request.RequestUri,email);
+
+            return message;
         }
         
     }
