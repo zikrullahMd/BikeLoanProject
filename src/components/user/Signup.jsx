@@ -7,7 +7,7 @@ export default function Signup() {
   const [email,setEmail] = useState("");
   const [password,setPassword] = useState("");
   const [username,setUsername] = useState("");
-  const [mobileNumber,setMobile] = useState();
+  const [mobileNumber,setMobile] = useState("");
   const [userRole,setUserRole] = useState("");
 
   const registration = async() =>{
@@ -22,7 +22,9 @@ export default function Signup() {
       }
     })
     result = await result.json()
-    console.warn("result",result);
+    if(result.ok){
+      alert("You are signed up")
+    }
   }
     return (
       <div className="wrapper">
