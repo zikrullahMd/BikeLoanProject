@@ -7,6 +7,7 @@ using System.Web.Http;
 using DataAccess;
 using BikeLoanProject.Controllers;
 using System.Web.Http.Cors;
+using System.Data.Entity.Validation;
 
 namespace BikeLoanProject.Controllers
 {
@@ -15,16 +16,41 @@ namespace BikeLoanProject.Controllers
     {
         private static BikeLoanDBEntities entities = new BikeLoanDBEntities(); 
         
+        [Route("user/signup")]
         [HttpPost]
         public HttpResponseMessage signup(User user)
         {
-            entities.Users.Add(user);
-            entities.SaveChanges();
-            var message = Request.CreateResponse(HttpStatusCode.OK,"user added");
-            message.Headers.Location = new Uri(Request.RequestUri+" "+user.email);
+            
+                
+                
+            try
+            {
+                entities.Users.Add(user);
+                entities.SaveChanges();
+            }
+            catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+            {
+                Exception raise = dbEx;
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        string msg = string.Format("{0}:{1}",
+                            validationErrors.Entry.Entity.ToString(),
+                            validationError.ErrorMessage);
+                        // raise a new exception nesting
+                        // the current instance as InnerException
+                        raise = new InvalidOperationException(msg, raise);
+                    }
+                }
+                throw raise;
+            }
+            var message = Request.CreateResponse(HttpStatusCode.OK, "user added");
+            message.Headers.Location = new Uri(Request.RequestUri + " " + user.email);
             return message;
         }
 
+        [Route("user/login")]
         public bool login(string email, string pass)
         {
             AuthController auth = new AuthController();
@@ -37,6 +63,7 @@ namespace BikeLoanProject.Controllers
             return auth.isUserPresent(login);
         }
         
+        [Route("user/getProfile")]
         [HttpGet]
         public HttpResponseMessage getUser(string email)
         {
@@ -51,6 +78,7 @@ namespace BikeLoanProject.Controllers
             return message;
         }
 
+        
         [HttpGet]
         public IEnumerable<User> getUsers()
         {
@@ -63,6 +91,8 @@ namespace BikeLoanProject.Controllers
             return users;
         }
 
+
+        [Route("user/editProfile")]
         [HttpPut]
         public HttpResponseMessage editUser(string email, [FromBody] User user)
         {
@@ -84,6 +114,7 @@ namespace BikeLoanProject.Controllers
             return message;
         }
 
+        [Route("user/deleteProfile")]
         [HttpDelete]
         public HttpResponseMessage deleteUser(string email)
         {

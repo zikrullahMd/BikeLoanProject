@@ -12,6 +12,8 @@ namespace BikeLoanProject.Controllers
     public class LoanController : ApiController
     {
         private static BikeLoanDBEntities entities = new BikeLoanDBEntities();
+
+
         [HttpPost]
         public HttpResponseMessage addLoan([FromBody] LoanApplication data)
         {
@@ -22,12 +24,14 @@ namespace BikeLoanProject.Controllers
 
             return message;
         }
+
+        [Route("admin/editLoan")]
         [HttpPut]
-        public HttpResponseMessage editLoan(int LoanId, [FromBody] LoanApplication data)
+        public HttpResponseMessage editLoan(int loanId, [FromBody] LoanApplication data)
         {
             try
             {
-                LoanApplication loan = entities.LoanApplications.FirstOrDefault(l => l.loanId == LoanId);
+                LoanApplication loan = entities.LoanApplications.FirstOrDefault(l => l.loanId == loanId);
                 if(loan == null)
                 {
                     return Request.CreateResponse(HttpStatusCode.NotFound,"No data found");
@@ -44,15 +48,18 @@ namespace BikeLoanProject.Controllers
                 loan.loanRepaymentMongths = data.loanRepaymentMongths;
                 entities.SaveChanges();
                 var message = Request.CreateResponse(HttpStatusCode.OK,loan);
-                message.Headers.Location = new Uri(Request.RequestUri + " " + LoanId);
+                message.Headers.Location = new Uri(Request.RequestUri + " " + loanId);
                 return message;
             }catch(Exception ex)
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest,ex);
             }
         }
+
+
+        [Route("admin/getAllLoans")]
         [HttpGet]
-        public IEnumerable<LoanApplication> getLoan(LoanApplication data)
+        public IEnumerable<LoanApplication> getAllLoans(LoanApplication data)
         {
                 if(entities.LoanApplications.Count() == 0)
                 {
@@ -62,6 +69,7 @@ namespace BikeLoanProject.Controllers
                 return result;
         }
         
+        [Route("admin/deleteLoan")]
         [HttpDelete]
         public HttpResponseMessage deleteLoan(int loanId)
         {

@@ -10,3 +10,15 @@ D:\.NET Apps\BikeLoanProject\DataAccess\obj\Debug\DataAccess.csproj.CoreCompileI
 D:\.NET Apps\BikeLoanProject\DataAccess\obj\Debug\DataAccess.csproj.CopyComplete
 D:\.NET Apps\BikeLoanProject\DataAccess\obj\Debug\DataAccess.dll
 D:\.NET Apps\BikeLoanProject\DataAccess\obj\Debug\DataAccess.pdb
+D:\dotNet apps\BikeLoanProject\DataAccess\bin\Debug\DataAccess.dll.config
+D:\dotNet apps\BikeLoanProject\DataAccess\bin\Debug\DataAccess.dll
+D:\dotNet apps\BikeLoanProject\DataAccess\bin\Debug\DataAccess.pdb
+D:\dotNet apps\BikeLoanProject\DataAccess\bin\Debug\EntityFramework.dll
+D:\dotNet apps\BikeLoanProject\DataAccess\bin\Debug\EntityFramework.SqlServer.dll
+D:\dotNet apps\BikeLoanProject\DataAccess\bin\Debug\EntityFramework.xml
+D:\dotNet apps\BikeLoanProject\DataAccess\bin\Debug\EntityFramework.SqlServer.xml
+D:\dotNet apps\BikeLoanProject\DataAccess\obj\Debug\DataAccess.csproj.AssemblyReference.cache
+D:\dotNet apps\BikeLoanProject\DataAccess\obj\Debug\DataAccess.csproj.CoreCompileInputs.cache
+D:\dotNet apps\BikeLoanProject\DataAccess\obj\Debug\DataAccess.csproj.CopyComplete
+D:\dotNet apps\BikeLoanProject\DataAccess\obj\Debug\DataAccess.dll
+D:\dotNet apps\BikeLoanProject\DataAccess\obj\Debug\DataAccess.pdb

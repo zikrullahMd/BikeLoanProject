@@ -14,7 +14,7 @@ namespace BikeLoanProject
 
             // Web API routes
             config.MapHttpAttributeRoutes();
-            config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
+            
             config.EnableCors();
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
