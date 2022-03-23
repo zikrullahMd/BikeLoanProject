@@ -8,7 +8,7 @@ export default class Navbar extends React.Component {
         <header className="navbar">
           <div className="navbar__title navbar__item">Bike Loan</div>
           <div className="navbar__item" id="applyLoan">
-            <Link to="/">Apply Loan</Link>
+            <Link to="/user/AddLoan">Apply Loan</Link>
           </div>
           <div className="navbar__item" id="loanStatus">
             <Link to="/">Loan Status</Link>

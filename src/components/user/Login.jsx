@@ -1,10 +1,43 @@
-import React from "react";
+import React,{useState} from "react";
+//import { useNavigate } from "react-router-dom";
 import {
   Link
 } from "react-router-dom";
 
-export default class Login extends React.Component {
-  render() {
+export default function Login() {
+  const [email,setEmail] = useState("");
+  const [pass,setPassword] = useState("");
+  
+
+  
+  const login = async(e) =>{
+    e.preventDefault();
+    const item = {
+        
+      "email" : email,
+      "password" : pass
+  }
+    
+    console.log(item);
+    let result = await fetch('http://localhost:52188/user/login',{
+      method : 'POST',
+      body : JSON.stringify(item),
+      headers:{
+        "Content-Type" : 'application/json',
+        "Accept":'application/json'
+      }
+    })
+    result = await result.json();
+    
+    if(result.email == item.email && result.password == item.password){
+      alert("Hogaya bhaiya ji")
+    }else{
+      alert("Kya kar raha hai bhai?")
+    }
+    
+  }
+
+  
     return (
       <div className="wrapper">
         <div className="squeeze_wrapper">
@@ -16,12 +49,12 @@ export default class Login extends React.Component {
           </div>
           <div className="squeeze_form">
             <div className="login">
-              <form>
+              <form onSubmit={login}>
                 <h4 id="login_">Login</h4>
                 <label>Email</label>
-                <input type="email" id="email" placeholder="name@domain" required className="email" />
+                <input type="email" id="txtEmail" placeholder="name@domain" required className="email" onChange={e=>setEmail(e.target.value)}/>
                 <label>Password</label>
-                <input type="password" id="password" placeholder="Password" required />
+                <input type="password" id="txtPassword" placeholder="Password" required  onChange={e=>setPassword(e.target.value)} />
                 <button type="submit" id="loginButton">Login</button>
               </form>
             </div>
@@ -36,4 +69,3 @@ export default class Login extends React.Component {
       </div>
     );
   }
-}

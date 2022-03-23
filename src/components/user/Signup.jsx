@@ -13,6 +13,9 @@ export default function Signup() {
   const registration = async() =>{
     const item = {email,password,username,mobileNumber,userRole};
     console.log(item);
+    // For HTTPS compliant
+    //let result = await fetch('https://localhost:44334/user/signup',{
+    // For HTTP complaint
     let result = await fetch('http://localhost:52188/user/signup',{
       method : 'POST',
       body : JSON.stringify(item),
