@@ -11,6 +11,7 @@ export default function ViewProfile() {
     if(sessionStorage.getItem("login-info") == null){
       alert("Please login first")
       navigate("/");
+      
     }
 
     const fetchData = async() =>{

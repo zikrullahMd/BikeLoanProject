@@ -1,25 +1,73 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import Navbar from "./Navbar";
+import { useNavigate } from "react-router-dom";
+import Link from "next/link";
 
-export default class AddLoan extends React.Component {
-  render() {
+export default function AddLoan(){
+  const navigate = useNavigate();
+  useEffect(()=>{
+    if(sessionStorage.getItem("login-info") == null){
+      alert("Please login first")
+      navigate("/");
+    }
+  })
+  const [loantype,setLoanType] = useState();
+  const [name,setName] = useState();
+  const [address,setAddress] = useState();
+  const [mobile,setMobile] = useState();
+  const [email,setEmail] = useState();
+  const [aadhar,setAadhar] = useState();
+  const [pan,setPan] = useState();
+  const [salary,setSalary] = useState();
+  const [amount,setAmount] = useState();
+  const [month,setMonth] = useState();
+
+  const add = async(event) =>{
+    event.preventDefault();
+    console.log("clicked")
+    let item = {
+    "loanType" : loantype,
+    "applicantName": name,
+    "applicantAddress": address,
+    "applicantMobile": mobile,
+    "applicantEmail": email,
+    "applicantAadhar": aadhar,
+    "applicantPan": pan,
+    "applicantSalary": salary,
+    "loanAmount": amount,
+    "loanRepaymentMongths": month};
+
+    let result = await fetch('http://localhost:52188/admin/addLoan',{
+      method : 'POST',
+      body : JSON.stringify(item),
+      
+      header : {
+        "Content-Type" : 'application/json',
+        "Accept":'application/json',
+        "Access-Control-Allow-Origin" : '*'
+      }
+    })
+    result = await result.json();
+    console.log(result);
+  }
+  
     return (
       <div>
         <Navbar />
         <div className="addloan_wrapper">
           <div className="addloan_form">
-            <form>
+            <form >
               <div>
                 <label>Applicant name</label>
-                <input type="text" id="enterName" placeholder="Name" required />
+                <input type="text" id="enterName" placeholder="Name" required  onChange={e=>setName(e.target.value)} />
                 <label>Email</label>
-                <input type="email" id="enterEmail" placeholder="name@domain" required />
+                <input type="email" id="enterEmail" placeholder="name@domain" required onChange={e=>setEmail(e.target.value)} />
                 <label>Applicant salary (per annum)</label>
-                <input type="text" id="enterSalary" placeholder="ex: $100,000" required />
+                <input type="text" id="enterSalary" placeholder="ex: $100,000" required onChange={e=>setSalary(e.target.value)} />
                 <label>Loan amount</label>
-                <input type="text" id="enterAmount" placeholder="ex: $100,000" required />
-                <label for="file_type">Pick a type:</label>
-                <select name="file_type" id="chooseFile">
+                <input type="text" id="enterAmount" placeholder="ex: $100,000" required onChange={e=>setAmount(e.target.value)} />
+                <label htmlFor="file_type">Pick a type:</label>
+                <select name="file_type" id="chooseFile" onChange={e=>setLoanType(e.target.value)}>
                   <option value="aadhar">Aadhar</option>
                   <option value="pan">PAN</option>
                   <option value="drivers_license">Driver's License</option>
@@ -29,31 +77,27 @@ export default class AddLoan extends React.Component {
             <form>
               <div >
                 <label>Mobile number</label>
-                <input type="text" id="enterMobile" placeholder="Mobile number" required />
+                <input type="text" id="enterMobile" placeholder="Mobile number" required onChange={e=>setMobile(e.target.value)} />
+                <label>Address</label>
+                <input type="text" id="enterAddress" placeholder="Address" required onChange={e=>setAddress(e.target.value)} />
                 <label>Aadhar number</label>
-                <input type="text" id="enterAadharNo" placeholder="#### #### #### ####" required />
+                <input type="text" id="enterAadharNo" placeholder="#### #### #### ####" required onChange={e=>setAadhar(e.target.value)} />
                 <label>PAN number</label>
-                <input type="text" id="enterPanNo" placeholder="#######" required />
+                <input type="text" id="enterPanNo" placeholder="#######" required onChange={e=>setPan(e.target.value)} />
                 <label>Loan repayment duration (in months)</label>
-                <input type="text" id="enterMonths" placeholder="ex: 8 months" required />
+                <input type="text" id="enterMonths" placeholder="ex: 8 months" required onChange={e=>setMonth(e.target.salary)} />
+                {/*<div class="doc_button">
                 <label>Supporting documents</label>
-                <div class="doc_button">
                   <button class="btn">Upload supporting documents</button>
                   <input type="file" name="myfile" required />
-                </div>
-                <div className="submit_documents">
-                  <button type="submit" id="uploadDocumentsButton">
-                    Upload documents
-                  </button>
-                </div>
+              </div>*/}
               </div>
-            </form>
+              <div className="submit_documents" style={{marginTop : "2rem"}}>
+              <button onClick={add} type="submit" id="applyLoanButton">Apply for loan</button>
+              </div>
+              </form>
           </div>
-          <button type="submit" id="applyLoanButton">
-            Apply for loan
-          </button>
         </div>
       </div>
     );
   }
-}
