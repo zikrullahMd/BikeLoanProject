@@ -14,8 +14,11 @@ namespace BikeLoanProject.Controllers
         public bool isUserPresent([FromBody]Login login)
         {
             BikeLoanDBEntities entities = new BikeLoanDBEntities();
-            User email = entities.Users.FirstOrDefault(e => login.email.Equals(e));
-            User pass = entities.Users.FirstOrDefault(e => login.password.Equals(e));
+            //User email = entities.Users.FirstOrDefault(e => login.email.Equals(e));
+
+            User email = entities.Users.Where(e => login.email.Equals(e.email)).FirstOrDefault();
+            User pass = entities.Users.Where(e => login.password.Equals(e.password)).FirstOrDefault();
+            //User pass = entities.Users.FirstOrDefault(e => login.password.Equals(e));
             return email != null && pass != null;
         }
         //Change [FromBody] while integration with front end

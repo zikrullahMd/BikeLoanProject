@@ -13,7 +13,7 @@ namespace BikeLoanProject.Controllers
     {
         private static BikeLoanDBEntities entities = new BikeLoanDBEntities();
 
-
+        [Route("admin/addLoan")]
         [HttpPost]
         public HttpResponseMessage addLoan([FromBody] LoanApplication data)
         {
