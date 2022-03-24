@@ -11,13 +11,13 @@ export default class Navbar extends React.Component {
             <Link to="/user/AddLoan">Apply Loan</Link>
           </div>
           <div className="navbar__item" id="loanStatus">
-            <Link to="/">Loan Status</Link>
+            <Link to="/user/ViewLoan">Loan Status</Link>
           </div>
           <div className="navbar__item" id="profile">
-            <Link to="/">Profile</Link>
+            <Link to="/user/getProfile">Profile</Link>
           </div>
           <div className="navbar__item" id="logout">
-            <Link to="/">Logout</Link>
+            <Link to="/" onClick={()=>sessionStorage.removeItem("login-info")}>Logout</Link>
           </div>
         </header>
       </div>

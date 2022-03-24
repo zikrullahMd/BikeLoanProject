@@ -1,19 +1,21 @@
 import React,{useState} from "react";
-//import { useNavigate } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
+
 import {
   Link
 } from "react-router-dom";
 
 export default function Login() {
+  const navigate = useNavigate();
   const [email,setEmail] = useState("");
   const [pass,setPassword] = useState("");
   
+   
 
   
   const login = async(e) =>{
     e.preventDefault();
     const item = {
-        
       "email" : email,
       "password" : pass
   }
@@ -29,10 +31,11 @@ export default function Login() {
     })
     result = await result.json();
     
-    if(result.email == item.email && result.password == item.password){
-      alert("Hogaya bhaiya ji")
+    if(result.email === item.email && result.password === item.password){
+      sessionStorage.setItem("login-info",item.email);
+      navigate("/user/getProfile");
     }else{
-      alert("Kya kar raha hai bhai?")
+      alert("Invalid User")
     }
     
   }

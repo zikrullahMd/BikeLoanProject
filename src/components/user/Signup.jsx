@@ -1,18 +1,20 @@
 import React,{useState} from "react";
 import {
-  Link
+  Link,useNavigate
 } from "react-router-dom";
 
 export default function Signup() {
+  const navigate = useNavigate();
   const [email,setEmail] = useState("");
   const [password,setPassword] = useState("");
   const [username,setUsername] = useState("");
   const [mobileNumber,setMobile] = useState("");
   const [userRole,setUserRole] = useState("");
 
-  const registration = async() =>{
+  const registration = async(event) =>{
+    event.preventDefault();
     const item = {email,password,username,mobileNumber,userRole};
-    console.log(item);
+    
     // For HTTPS compliant
     //let result = await fetch('https://localhost:44334/user/signup',{
     // For HTTP complaint
@@ -25,8 +27,10 @@ export default function Signup() {
       }
     })
     result = await result.json()
-    if(result.ok){
-      alert("You are signed up")
+    console.log(result);
+    if(result === "user added"){
+      alert("hogaya")
+      navigate("/");
     }
   }
     return (

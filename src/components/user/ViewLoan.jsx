@@ -1,8 +1,15 @@
-import React from "react";
+import React,{useEffect} from "react";
 import Navbar from "./Navbar";
+import {useNavigate} from "react-router-dom"
 
-export default class ViewLoan extends React.Component {
-  render() {
+export default function ViewLoan() {
+  const navigate = useNavigate();
+  useEffect(()=>{
+    if(sessionStorage.getItem("login-info") == null){
+      alert("please login first")
+      navigate("/");
+    }
+  })
     return (
       <div>
         <Navbar />
@@ -16,5 +23,4 @@ export default class ViewLoan extends React.Component {
         </div>
       </div>
     );
-  }
-}
+    }
