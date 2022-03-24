@@ -31,8 +31,9 @@ export default function Login() {
     })
     result = await result.json();
     
-    if(result.email === item.email && result.password === item.password){
+    if(result == "User" || result == "Admin"){
       sessionStorage.setItem("login-info",item.email);
+      sessionStorage.setItem("role",result);
       navigate("/user/getProfile");
     }else{
       alert("Invalid User")

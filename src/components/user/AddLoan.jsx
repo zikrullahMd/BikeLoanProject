@@ -1,7 +1,6 @@
 import React,{useState,useEffect} from "react";
 import Navbar from "./Navbar";
 import { useNavigate } from "react-router-dom";
-import Link from "next/link";
 
 export default function AddLoan(){
   const navigate = useNavigate();
@@ -26,6 +25,7 @@ export default function AddLoan(){
     event.preventDefault();
     console.log("clicked")
     let item = {
+    "loandId" : parseInt(mobile.substring(5,9)),
     "loanType" : loantype,
     "applicantName": name,
     "applicantAddress": address,
@@ -36,19 +36,43 @@ export default function AddLoan(){
     "applicantSalary": salary,
     "loanAmount": amount,
     "loanRepaymentMongths": month};
+      try{
 
-    let result = await fetch('http://localhost:52188/admin/addLoan',{
+        // let result = await fetch('http://localhost:52188/admin/addLoan',{
+        //   method : 'POST',
+        //   body : JSON.stringify(item),
+          
+        //   header : {
+        //     "Content-Type" : 'application/json',
+        //     "Accept":'application/json',
+            
+        //   }
+        // })
+        // result = await result.json();
+        // if(result === 'loan added'){
+        //   alert("success")
+        // }else{
+        //   alert("failed")
+        // }
+        // console.log(result);
+        let result = await fetch('http://localhost:52188/admin/addLoan',{
       method : 'POST',
       body : JSON.stringify(item),
-      
-      header : {
+      headers:{
         "Content-Type" : 'application/json',
-        "Accept":'application/json',
-        "Access-Control-Allow-Origin" : '*'
+        "Accept":'application/json'
       }
     })
-    result = await result.json();
+    result = await result.json()
     console.log(result);
+    if(result === "loan added"){
+      alert("hogaya")
+      navigate("/AddDocument");
+    }
+      }catch(err){
+        console.log(err);
+        alert("no possible")
+      }
   }
   
     return (

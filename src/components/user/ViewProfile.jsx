@@ -11,7 +11,6 @@ export default function ViewProfile() {
     if(sessionStorage.getItem("login-info") == null){
       alert("Please login first")
       navigate("/");
-      
     }
 
     const fetchData = async() =>{
@@ -19,6 +18,7 @@ export default function ViewProfile() {
     await fetch(`http://localhost:52188/user/getProfile?email=${email}`)
     .then(res=>res.json())
     .then((result)=>setProfile(JSON.parse(result)))
+    .catch((err)=>console.log(err))
     }
 
     fetchData();
