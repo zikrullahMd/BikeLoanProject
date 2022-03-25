@@ -19,7 +19,7 @@ export default class Signup extends React.Component {
               <form>
                 <h4 id="register_">Register as admin</h4>
                 <label>Role</label>
-                <select name="cars" id="cars" className="select_role_dropdown" required>
+                <select name="role" id="role" className="select_role_dropdown" required>
                   <option value="admin">Admin</option>
                 </select>
                 <label>Identity</label>
