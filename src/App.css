@@ -1,7 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=BhuTuka+Expanded+One&display=swap");
 
-body {
+.wrapper,
+.addloan_wrapper,
+.display_users_wrapper {
   font-family: "Inter";
 }
 
@@ -69,7 +71,8 @@ p {
 
 input[type="text"],
 input[type="email"],
-input[type="password"] {
+input[type="password"],
+.select_role_dropdown {
   box-sizing: border-box;
   width: 100%;
   border: 1px solid;

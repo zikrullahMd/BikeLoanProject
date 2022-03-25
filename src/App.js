@@ -1,6 +1,8 @@
 import './App.css';
 import Login from "./components/user/Login";
 import Signup from "./components/user/Signup";
+import AdminLogin from "./components/admin/Login";
+import AdminSignup from "./components/admin/Signup";
 import Dashboard from './components/admin/Dashboard';
 import AddLoan from "./components/user/AddLoan";
 import ViewLoan from './components/user/ViewLoan';
@@ -25,6 +27,9 @@ function App() {
           <Route path='user/viewLoan' element={< ViewLoan />}></Route>
           <Route path='user/getProfile' element={< ViewProfile />}></Route>
           <Route path='user/success' element={< ApplySuccess />}></Route>
+
+          <Route path='admin/signup' element={< AdminSignup />}></Route>
+          <Route path='admin/login' element={< AdminLogin />}></Route>
           <Route path='admin/getAllLoans' element={< Dashboard />}></Route>
         </Routes>
       </div>
