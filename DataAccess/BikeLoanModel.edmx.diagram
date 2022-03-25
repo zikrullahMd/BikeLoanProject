@@ -7,8 +7,8 @@
       <Diagram DiagramId="99d17e872a9142e1a7c15513ea750310" Name="Diagram1">
         <EntityTypeShape EntityType="BikeLoanDBModel.Admin" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BikeLoanDBModel.Document" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BikeLoanDBModel.LoanApplication" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BikeLoanDBModel.Login" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BikeLoanDBModel.LoanApplication" Width="2.625" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BikeLoanDBModel.Login" Width="1.5" PointX="7.125" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="BikeLoanDBModel.User" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>

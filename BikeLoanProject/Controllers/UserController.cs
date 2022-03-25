@@ -67,8 +67,23 @@ namespace BikeLoanProject.Controllers
 
             if (auth.isUserPresent(login))
             {
-                var message = Request.CreateResponse(HttpStatusCode.OK, login);
-                message.Headers.Location = new Uri(Request.RequestUri + "Valid user");
+                var message = Request.CreateResponse(HttpStatusCode.OK, "User");
+                var user = entities.Users.FirstOrDefault(us => us.email == login.email);
+                var admin = entities.Admins.FirstOrDefault(ad => ad.email == login.email);
+                if(user != null)
+                {
+                    message.Headers.Location = new Uri(Request.RequestUri + "Valid user");
+                }
+                return message;
+            }else if (auth.isAdminPresent(login))
+            {
+                var message = Request.CreateResponse(HttpStatusCode.OK, "Admin");
+                var user = entities.Users.FirstOrDefault(us => us.email == login.email);
+                var admin = entities.Admins.FirstOrDefault(ad => ad.email == login.email);
+                if (admin != null)
+                {
+                    message.Headers.Location = new Uri(Request.RequestUri + "Valid admin");
+                }
                 return message;
             }
             else
@@ -83,11 +98,31 @@ namespace BikeLoanProject.Controllers
         {
             var user = entities.Users.FirstOrDefault(us => us.email == email);
             var loanDet = entities.LoanApplications.FirstOrDefault(us=>us.applicantEmail == email);
-            if (user == null || loanDet == null)
+            if (user == null && loanDet == null)
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
-            Profile result = new Profile()
+            Profile res = new Profile();
+            if(loanDet == null)
+            {
+
+                res.username = user.username;
+                res.address = user.email;
+                res.mobile = user.mobileNumber;
+                res.loanid = -1;
+                res.email = user.email;
+                res.emi = -1;
+            }
+            else
+            {
+                res.username = user.username;
+                res.address = loanDet.applicantAddress;
+                res.mobile = user.mobileNumber;
+                res.loanid = loanDet.loanId;
+                res.email = user.email;
+                res.emi = 123;
+            }
+            /*file result = new Profile()
             {
                 username = user.username,
                 address = loanDet.applicantAddress,
@@ -95,8 +130,8 @@ namespace BikeLoanProject.Controllers
                 loanid = loanDet.loanId,
                 email = user.email,
                 emi = 123
-            };
-            var message = Request.CreateResponse(HttpStatusCode.OK,JsonConvert.SerializeObject(result));
+            };*/
+            var message = Request.CreateResponse(HttpStatusCode.OK,JsonConvert.SerializeObject(res));
             message.Headers.Location = new Uri(Request.RequestUri + " " + "User found");
 
             return message;

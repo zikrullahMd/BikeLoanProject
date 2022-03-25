@@ -25,8 +25,8 @@ namespace BikeLoanProject.Controllers
         public bool isAdminPresent([FromBody]Login login)
         {
             BikeLoanDBEntities entities = new BikeLoanDBEntities();
-            Admin email = entities.Admins.FirstOrDefault(e => login.email.Equals(e));
-            Admin pass = entities.Admins.FirstOrDefault(e => login.password.Equals(e));
+            Admin email = entities.Admins.FirstOrDefault(e => login.email.Equals(e.email));
+            Admin pass = entities.Admins.FirstOrDefault(e => login.password.Equals(e.password));
             return email != null && pass != null;
         }
 

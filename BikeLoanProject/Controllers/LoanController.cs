@@ -5,10 +5,13 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using DataAccess;
-
+using BikeLoanProject.Models;
+using WebApp.Models;
+using System.Web.Http.Cors;
 
 namespace BikeLoanProject.Controllers
 {
+    [EnableCors("*", "*", "*")]
     public class LoanController : ApiController
     {
         private static BikeLoanDBEntities entities = new BikeLoanDBEntities();
@@ -17,10 +20,24 @@ namespace BikeLoanProject.Controllers
         [HttpPost]
         public HttpResponseMessage addLoan([FromBody] LoanApplication data)
         {
-            entities.LoanApplications.Add(data);
+            LoanApplication toadd = new LoanApplication()
+            {
+                loanId = data.loanId,
+                loantype = data.loantype,
+                applicantName = data.applicantName,
+                applicantAddress = data.applicantAddress,
+                applicantMobile = data.applicantMobile,
+                applicantEmail = data.applicantEmail,
+                applicantAadhar = data.applicantAadhar,
+                applicantPan = data.applicantPan,
+                applicantSalary = data.applicantSalary,
+                loanAmount = data.loanAmount,
+                loanRepaymentMongths = data.loanRepaymentMongths
+            };
+            entities.LoanApplications.Add(toadd);
             entities.SaveChanges();
-            var message = Request.CreateResponse(HttpStatusCode.OK,data);
-            message.Headers.Location = new Uri(Request.RequestUri + " " + data.loanId.ToString());
+            var message = Request.CreateResponse(HttpStatusCode.OK,toadd);
+            message.Headers.Location = new Uri(Request.RequestUri + " " + "loan added");
 
             return message;
         }
@@ -59,14 +76,15 @@ namespace BikeLoanProject.Controllers
 
         [Route("admin/getAllLoans")]
         [HttpGet]
-        public IEnumerable<LoanApplication> getAllLoans(LoanApplication data)
+        public HttpResponseMessage getAllLoans()
         {
                 if(entities.LoanApplications.Count() == 0)
                 {
-                    return Enumerable.Empty<LoanApplication>();
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "No user found");
                 }
-                var result = entities.LoanApplications.ToList();
-                return result;
+                var message = Request.CreateResponse(HttpStatusCode.OK, entities.LoanApplications.ToList());
+                message.Headers.Location = new Uri(Request.RequestUri + " " + "Success");
+                return message;
         }
         
         [Route("admin/deleteLoan")]
