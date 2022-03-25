@@ -1,10 +1,40 @@
-import React from "react";
+import React,{useState} from "react";
 import {
-  Link
+  Link,useNavigate
 } from "react-router-dom";
 
-export default class Signup extends React.Component {
-  render() {
+export default function Signup() {
+  const navigate = useNavigate();
+  const[email,setEmail] = useState();
+  const[password,setPassword] = useState();
+  const[mobileNumber,setMobile] = useState();
+  const[userRole,setRole] = useState();
+
+  const registration = async(e) =>{
+    e.preventDefault();
+    let item = {email,password,mobileNumber,userRole}
+    console.log(item);
+    try{
+        let result = await fetch('http://localhost:52188/admin/signup', {
+        method: 'POST',
+        body: JSON.stringify(item),
+        headers: {
+          "Content-Type": 'application/json',
+          "Accept": 'application/json'
+        }
+      })
+      result = await result.json()
+      console.log(result);
+      if (result === "admin added") {
+        alert("hogaya")
+        navigate("/admin/Login")
+      }
+    }catch(err){
+      console.log(err);
+    }
+    
+  }
+
     return (
       <div className="wrapper">
         <div className="squeeze_wrapper">
@@ -16,21 +46,18 @@ export default class Signup extends React.Component {
           </div>
           <div className="squeeze_form">
             <div className="register">
-              <form>
+              <form onSubmit={registration}>
                 <h4 id="register_">Register as admin</h4>
                 <label>Role</label>
-                <select name="role" id="role" className="select_role_dropdown" required>
-                  <option value="admin">Admin</option>
-                </select>
-                <label>Identity</label>
+                <input type="text" id="role" placeholder="Role" required onChange={e=>setRole(e.target.value)}/>
+                <label>Email</label>
                 <div className="username_email">
-                  <input type="text" id="username" placeholder="Username" required />
-                  <input type="email" id="email" placeholder="Email" required />
+                  <input type="email" id="email" placeholder="Email" required onChange={e=>setEmail(e.target.value)}/>
                 </div>
                 <label>Mobile number</label>
-                <input type="text" id="mobileNumber" placeholder="Mobile number" required />
+                <input type="text" id="mobileNumber" placeholder="Mobile number" required onChange={e=>setMobile(e.target.value)}/>
                 <label>Password</label>
-                <input type="password" id="password" placeholder="Password" />
+                <input type="password" id="password" placeholder="Password" onChange={e=>setPassword(e.target.value)}/>
                 <label>Confirm password</label>
                 <input type="password" id="confirmPassword" placeholder="Confirm password" required />
                 <br /><br />
@@ -48,5 +75,4 @@ export default class Signup extends React.Component {
         </div>
       </div>
     );
-  }
 }
