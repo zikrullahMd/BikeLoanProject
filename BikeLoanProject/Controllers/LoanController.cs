@@ -8,6 +8,7 @@ using DataAccess;
 using BikeLoanProject.Models;
 using WebApp.Models;
 using System.Web.Http.Cors;
+using System.Data.Entity.Validation;
 
 namespace BikeLoanProject.Controllers
 {
@@ -32,14 +33,21 @@ namespace BikeLoanProject.Controllers
                 applicantPan = data.applicantPan,
                 applicantSalary = data.applicantSalary,
                 loanAmount = data.loanAmount,
-                loanRepaymentMongths = data.loanRepaymentMongths
+                loanRepaymentMonths = data.loanRepaymentMonths
             };
+            System.Diagnostics.Debug.WriteLine(data.loanId);
             entities.LoanApplications.Add(toadd);
-            entities.SaveChanges();
-            var message = Request.CreateResponse(HttpStatusCode.OK,toadd);
-            message.Headers.Location = new Uri(Request.RequestUri + " " + "loan added");
-
-            return message;
+            try
+            {
+                entities.SaveChanges();
+                var message = Request.CreateResponse(HttpStatusCode.OK,toadd);
+                message.Headers.Location = new Uri(Request.RequestUri + " " + "loan added");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            return Request.CreateErrorResponse(HttpStatusCode.NotFound, "no possible");
         }
 
         [Route("admin/editLoan")]
@@ -62,7 +70,7 @@ namespace BikeLoanProject.Controllers
                 loan.applicantPan = data.applicantPan;
                 loan.applicantSalary = data.applicantSalary;
                 loan.loanAmount = data.loanAmount;
-                loan.loanRepaymentMongths = data.loanRepaymentMongths;
+                loan.loanRepaymentMonths = data.loanRepaymentMonths;
                 entities.SaveChanges();
                 var message = Request.CreateResponse(HttpStatusCode.OK,loan);
                 message.Headers.Location = new Uri(Request.RequestUri + " " + loanId);
@@ -82,6 +90,7 @@ namespace BikeLoanProject.Controllers
                 {
                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, "No user found");
                 }
+                
                 var message = Request.CreateResponse(HttpStatusCode.OK, entities.LoanApplications.ToList());
                 message.Headers.Location = new Uri(Request.RequestUri + " " + "Success");
                 return message;

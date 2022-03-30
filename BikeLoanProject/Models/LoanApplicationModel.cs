@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations;
 namespace WebApp.Models{
     public class LoanApplicationModel{
         
-        [Key]
         public int loanId { get; set; }
         public string loantype { get; set; }
         public string applicantName { get; set; }
@@ -16,5 +15,6 @@ namespace WebApp.Models{
         public string applicantSalary { get; set; }
         public string loanAmount { get; set; }
         public string loanRepaymentMonths { get; set; }
+        public string status { get;set; }
     }
 }

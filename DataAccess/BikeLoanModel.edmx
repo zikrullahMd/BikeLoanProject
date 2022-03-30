@@ -98,7 +98,7 @@
           <Property Name="applicantPan" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="applicantSalary" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="loanAmount" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="loanRepaymentMongths" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="loanRepaymentMonths" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Login">
           <Key>
@@ -162,7 +162,7 @@
                 <ScalarProperty Name="applicantPan" ColumnName="applicantPan" />
                 <ScalarProperty Name="applicantSalary" ColumnName="applicantSalary" />
                 <ScalarProperty Name="loanAmount" ColumnName="loanAmount" />
-                <ScalarProperty Name="loanRepaymentMongths" ColumnName="loanRepaymentMongths" />
+                <ScalarProperty Name="loanRepaymentMonths" ColumnName="loanRepaymentMongths" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

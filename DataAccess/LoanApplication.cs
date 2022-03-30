@@ -38,7 +38,7 @@ public partial class LoanApplication
 
     public string loanAmount { get; set; }
 
-    public string loanRepaymentMongths { get; set; }
+    public string loanRepaymentMonths { get; set; }
 
 }
 

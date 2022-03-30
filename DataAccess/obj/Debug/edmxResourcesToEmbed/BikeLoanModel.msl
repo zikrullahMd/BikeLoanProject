@@ -33,7 +33,7 @@
           <ScalarProperty Name="applicantPan" ColumnName="applicantPan" />
           <ScalarProperty Name="applicantSalary" ColumnName="applicantSalary" />
           <ScalarProperty Name="loanAmount" ColumnName="loanAmount" />
-          <ScalarProperty Name="loanRepaymentMongths" ColumnName="loanRepaymentMongths" />
+          <ScalarProperty Name="loanRepaymentMonths" ColumnName="loanRepaymentMongths" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
