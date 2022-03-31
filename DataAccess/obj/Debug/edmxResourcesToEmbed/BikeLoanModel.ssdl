@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BikeLoanDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="email" />
+    </Key>
+    <Property Name="email" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="12" />
+    <Property Name="mobileNumber" Type="varchar" MaxLength="10" />
+    <Property Name="userRole" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Document">
+    <Key>
+      <PropertyRef Name="documentid" />
+    </Key>
+    <Property Name="documentid" Type="int" Nullable="false" />
+    <Property Name="documentType" Type="varchar" MaxLength="20" />
+    <Property Name="documentupload" Type="varbinary" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="LoanApplication">
+    <Key>
+      <PropertyRef Name="loanId" />
+    </Key>
+    <Property Name="loanId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="loantype" Type="varchar" MaxLength="10" />
+    <Property Name="applicantName" Type="varchar" MaxLength="10" />
+    <Property Name="applicantAddress" Type="varchar" MaxLength="20" />
+    <Property Name="applicantMobile" Type="varchar" MaxLength="10" />
+    <Property Name="applicantEmail" Type="varchar" MaxLength="10" />
+    <Property Name="applicantAadhar" Type="varchar" MaxLength="15" />
+    <Property Name="applicantPan" Type="varchar" MaxLength="15" />
+    <Property Name="applicantSalary" Type="varchar" MaxLength="10" />
+    <Property Name="loanAmount" Type="varchar" MaxLength="10" />
+    <Property Name="loanRepaymentMonths" Type="varchar" MaxLength="5" />
+    <Property Name="status" Type="varchar" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="Login">
+    <Key>
+      <PropertyRef Name="email" />
+    </Key>
+    <Property Name="email" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="email" />
+    </Key>
+    <Property Name="email" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="15" />
+    <Property Name="username" Type="varchar" MaxLength="10" />
+    <Property Name="mobileNumber" Type="varchar" MaxLength="10" />
+    <Property Name="userRole" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityContainer Name="BikeLoanDBModelStoreContainer">
+    <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Document" EntityType="Self.Document" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LoanApplication" EntityType="Self.LoanApplication" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Login" EntityType="Self.Login" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>
