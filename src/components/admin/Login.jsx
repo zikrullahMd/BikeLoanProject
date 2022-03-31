@@ -14,24 +14,28 @@ export default function Login() {
       "password": pass
     }
 
-    console.log(item);
-    let result = await fetch('http://localhost:52188/admin/login', {
-      method: 'POST',
-      body: JSON.stringify(item),
-      headers: {
-        "Content-Type": 'application/json',
-        "Accept": 'application/json'
+    try{
+        let result = await fetch('http://localhost:54754/admin/login', {
+        method: 'POST',
+        body: JSON.stringify(item),
+        headers: {
+          "Content-Type": 'application/json',
+          "Accept": 'application/json'
+        }
+      })
+
+      result = await result.json();
+
+      if (result == "Admin") {
+        alert("Login Success")
+        sessionStorage.setItem("login-info", item.email);
+        sessionStorage.setItem("role", result);
+        navigate("/admin/getAllLoans");
+      } else {
+        alert("Invalid User");
       }
-    })
-
-    result = await result.json();
-
-    if (result == "User" || result == "Admin") {
-      sessionStorage.setItem("login-info", item.email);
-      sessionStorage.setItem("role", result);
-      navigate("/admin/getAllLoans");
-    } else {
-      alert("Invalid User");
+    }catch(err){
+      alert(err);
     }
   }
     return (

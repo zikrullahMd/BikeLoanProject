@@ -3,6 +3,9 @@ import Navbar from "./Navbar";
 import { useNavigate } from "react-router-dom";
 
 export default function AddLoan() {
+  const[documentupload,setDoc] = useState([]);
+  const[name,setName] = useState("no document choosen");
+  const[documentType,setLoanType] = useState();
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -11,30 +14,48 @@ export default function AddLoan() {
       navigate("/");
     }
   })
+  const addDoc = (e) =>{
+    e.preventDefault();
+    const item = {
+      documentType,
+      documentupload
+    }
+    console.log(documentupload)
+    fetch('http://localhost:54754/user/addDocument',{
+      method : "POST",
+      body : JSON.stringify(item)
+    })
+    .then((res)=>res.json())
+    .then((result)=>{console.log(result)})
+    .catch((e)=>alert("Cannot upload Document"))
+    console.log(item)
+  }
   return (
     <div>
       <Navbar />
       <div className="addloan_wrapper">
         <div className="addloan_form">
-          <form onSubmit={add}>
-            <div>
-              <label htmlFor="file_type">Pick a type:</label>
-              <select name="file_type" id="chooseFile" onChange={e => setLoanType(e.target.value)}>
-                <option value="aadhar">Aadhar</option>
-                <option value="pan">PAN</option>
-                <option value="drivers_license">Driver's License</option>
-              </select>
-            </div>
+          <form onSubmit={addDoc}>
           </form>
-          <form>
+          <form onSubmit={addDoc}>
             <div >
-              <div class="doc_button">
-                <label>Supporting documents</label>
-                <button class="btn">Upload supporting documents</button>
-                <input type="file" name="myfile" required />
+            <div>
+            <label>Document Type</label>
+            <select name="file_type" id="chooseFile" onChange={e => setLoanType(e.target.value)}>
+              <option value="aadhar">Aadhar</option>
+              <option value="pan">PAN</option>
+              <option value="drivers_license">Driver's License</option>
+            </select>
+            </div>
+              <div className="doc_button">
+                <label className="heading">Supporting documents</label>
+                <button className="btn btn-primary"><img src="https://icons-for-free.com/iconfiles/png/512/box+document+outline+share+top+upload+icon-1320195323221671611.png" style={{height : "2rem", marginRight : "0rem"}}></img>Upload supporting documents</button>
+                <p id="text">{name}</p>
+                <input type="file" name="myfile" required onChange={(e)=>{setName(e.target.files[0].name)
+                setDoc([...documentupload, e.target.files[0]].name)}}/>
               </div>
               <div className="submit_documents">
-                <button type="submit" id="applyLoanButton">Apply for loan</button>
+                <button type="submit" id="applyLoanButton">Submit</button>
               </div>
             </div>
           </form>

@@ -15,7 +15,7 @@ export default function Signup() {
     let item = {email,password,mobileNumber,userRole}
     console.log(item);
     try{
-        let result = await fetch('http://localhost:52188/admin/signup', {
+        let result = await fetch('http://localhost:54754/admin/signup', {
         method: 'POST',
         body: JSON.stringify(item),
         headers: {

@@ -19,7 +19,7 @@ export default function Signup() {
     //let result = await fetch('https://localhost:44334/user/signup',{
     // For HTTP complaint
 
-    let result = await fetch('http://localhost:52188/user/signup', {
+    let result = await fetch('http://localhost:54754/user/signup', {
       method: 'POST',
       body: JSON.stringify(item),
       headers: {

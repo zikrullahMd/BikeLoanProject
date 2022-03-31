@@ -8,6 +8,8 @@ import AddLoan from "./components/user/AddLoan";
 import ViewLoan from './components/user/ViewLoan';
 import ViewProfile from './components/user/ViewProfile';
 import ApplySuccess from './components/user/ApplySuccess';
+import AddDocument from './components/user/AddDocument'
+import LoanDetails from './components/admin/LoanDetails'
 
 import {
   BrowserRouter as Router,
@@ -27,10 +29,14 @@ function App() {
           <Route path='user/viewLoan' element={< ViewLoan />}></Route>
           <Route path='user/getProfile' element={< ViewProfile />}></Route>
           <Route path='user/success' element={< ApplySuccess />}></Route>
+          <Route path='user/addDocument' element={< AddDocument />}></Route>
+
 
           <Route path='admin/signup' element={< AdminSignup />}></Route>
           <Route path='admin/login' element={< AdminLogin />}></Route>
           <Route path='admin/getAllLoans' element={< Dashboard />}></Route>
+          <Route path='admin/loanDetails' element={< LoanDetails />}></Route>
+          
         </Routes>
       </div>
     </Router>

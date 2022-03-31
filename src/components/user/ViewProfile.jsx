@@ -15,7 +15,7 @@ export default function ViewProfile() {
 
     const fetchData = async () => {
       const email = sessionStorage.getItem("login-info");
-      await fetch(`http://localhost:52188/user/getProfile?email=${email}`)
+      await fetch(`http://localhost:54754/user/getProfile?email=${email}`)
         .then(res => res.json())
         .then((result) => setProfile(JSON.parse(result)))
         .catch((err) => console.log(err))

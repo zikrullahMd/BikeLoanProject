@@ -18,7 +18,7 @@ export default function Login() {
     }
 
     console.log(item);
-    let result = await fetch('http://localhost:52188/user/login', {
+    let result = await fetch('http://localhost:54754/user/login', {
       method: 'POST',
       body: JSON.stringify(item),
       headers: {
