@@ -28,6 +28,7 @@ export default function Signup() {
       }
     })
     result = await result.json()
+    console.log(item);
     console.log(result);
     if (result === "user added") {
       alert("hogaya")
@@ -59,10 +60,7 @@ export default function Signup() {
               <label>Enter admin/user</label>
               <input type="text" id="admin/user" placeholder="Admin/User" required value={userRole} onChange={(e) => setUserRole(e.target.value)} />
 
-              <label>Role</label>
-              <select name="role" id="role" className="select_role_dropdown" required>
-                <option value="user">User</option>
-              </select>
+              
 
               {/* #################### */}
               {/* #################### */}

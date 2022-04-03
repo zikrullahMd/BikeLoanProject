@@ -9,6 +9,7 @@ export default function Accepted(){
 
   const navigate = useNavigate();
   const[loan,setLoans] = useState([]);
+  const[bool,setBool] = useState(false);
 
 
   useEffect(()=>{
@@ -29,6 +30,7 @@ export default function Accepted(){
       
         localStorage.setItem("loan",JSON.stringify(result))
         setLoans(result);
+        result ? setBool(true) : setBool(false);
       })
       .catch((err)=>console.log(err))
   },[])
@@ -44,7 +46,7 @@ export default function Accepted(){
           <Button variant="danger"><Link style={{textDecoration:"none",color:"white"}} to="/admin/Rejected">Rejected</Link></Button>
         </ButtonGroup>
         </div>
-        {loan.map((e)=>
+        {bool && loan.map((e)=>
             <User data={e} id={e.loanId}/>
           )}
     </div>

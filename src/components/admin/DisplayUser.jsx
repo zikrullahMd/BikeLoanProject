@@ -6,6 +6,7 @@ export default function Dashboard(){
 
   const navigate = useNavigate();
   const[loan,setLoans] = useState([]);
+  const[bool,setBool] = useState(false);
 
 
   useEffect(()=>{
@@ -23,9 +24,10 @@ export default function Dashboard(){
       })
       .then((res)=>res.json())
       .then((result)=>{
-        console.log("hello")
+        if(result != '')
         localStorage.setItem("loan",JSON.stringify(result))
         setLoans(result);
+        setBool(true);
         console.log(result);
       })
       .catch((err)=>console.log(err))
@@ -37,12 +39,15 @@ export default function Dashboard(){
       <div>
         <div className="display_users_wrapper">
           <div className="count_of_applications">
-            <p id="count_number"><strong>{ar.length}</strong> applicant(s) to verify</p>
+            <p id="count_number"><strong>{loan.length}</strong> applicant(s) to verify</p>
           </div>
         </div>
-        {loan.map((e)=>
+        {bool && loan.map((e)=>
           <User data={e} id={e.loanId}/>
         )}
+        {
+          !bool && <h1 style={{textAlign:"center"}}>No Loan Found</h1>
+        }
       </div>
     )
 }
