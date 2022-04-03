@@ -1,4 +1,5 @@
-import React from 'react'
+import React,{useEffect} from 'react'
+
 
 const User = (props) => {
     const approved = () =>{
@@ -30,6 +31,9 @@ const User = (props) => {
         .catch((err)=>console.log(err))
     }
 
+    useEffect(()=>{
+        console.log("you are here")
+    })
     return(
         <div>
             <div className="applicants_list">

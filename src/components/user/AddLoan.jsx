@@ -28,7 +28,6 @@ export default function AddLoan() {
     const status = "Submitted";
     event.preventDefault();
     let item = {
-      loanId ,
       loantype ,
       applicantName ,
       applicantAddress ,
@@ -52,11 +51,15 @@ export default function AddLoan() {
       })
       result = await result.json()
       console.warn("result",result);
-      if (result !== null ) {
-        alert("Add Documents")
+      if (result) {
+        sessionStorage.setItem("loanid",result);
         navigate("/user/AddDocument");
+      }else{
+        console.log(result)
+        alert("Could no apply for loan")
       }
     } catch (err) {
+      console.warn("sent",item);
       console.log(err);
       alert("Not possible.")
     }

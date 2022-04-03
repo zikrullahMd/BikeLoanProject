@@ -1,47 +1,24 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import Navbar from '../admin/Navbar'
 import { ButtonGroup,Button } from "react-bootstrap";
 import User from "./User";
+import { ListGroup } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 
 
 
 export default function LoanDetails(){
-  const [data,setData] = useState([]);
-  const [btn,setBtn] = useState("")
-
-
-  const accept = (e) =>{
-    e.preventDefault();
-    setBtn("acc")
-    fetch(`http://localhost:54754/admin/getByStatus?status=${"Approved"}`)
-    .then((res)=>res.json())
-    .then((result)=>{
-      setData(result);
-      console.log(data);
-    })
-  }
-  const reject = (e) =>{
-    e.preventDefault();
-    setBtn("rej")
-    fetch(`http://localhost:54754/admin/getByStatus?status=${"Rejected"}`)
-    .then((res)=>res.json())
-    .then((result)=>{
-      setData(result);
-      console.log(data);
-    })
-    
-  }
+  
   return(
     <div>
       <Navbar />
       <div style={{display : "flex",justifyContent : "center",marginTop : "2rem"}}>
         <ButtonGroup aria-label="Basic example">
-          <Button variant="success" onClick={accept}>Accepted</Button>
-          <Button variant="danger" onClick={reject}>Rejected</Button>
+          <Button variant="success"><Link style={{textDecoration:"none",color:"white"}} to="/admin/Accepted">Accepted</Link></Button>
+          <Button variant="danger"><Link style={{textDecoration:"none",color:"white"}} to="/admin/Accepted">Rejected</Link></Button>
         </ButtonGroup>
-      </div>
-      
+        </div>
     </div>
   )
 }

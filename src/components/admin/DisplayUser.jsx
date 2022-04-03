@@ -23,7 +23,9 @@ export default function Dashboard(){
       })
       .then((res)=>res.json())
       .then((result)=>{
+        console.log("hello")
         localStorage.setItem("loan",JSON.stringify(result))
+        setLoans(result);
         console.log(result);
       })
       .catch((err)=>console.log(err))
@@ -38,7 +40,7 @@ export default function Dashboard(){
             <p id="count_number"><strong>{ar.length}</strong> applicant(s) to verify</p>
           </div>
         </div>
-        {ar.map((e)=>
+        {loan.map((e)=>
           <User data={e} id={e.loanId}/>
         )}
       </div>

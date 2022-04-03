@@ -1,10 +1,12 @@
-import React from "react";
+import React,{useState} from "react";
 import Navbar from "./Navbar";
+
 
 export default class ApplySuccess extends React.Component {
 
+  
   loan_idx = {
-    id: "032882123"
+    id: sessionStorage.getItem("loanid")
   }
 
   render() {

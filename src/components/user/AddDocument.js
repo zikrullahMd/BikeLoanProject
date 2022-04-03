@@ -26,7 +26,10 @@ export default function AddLoan() {
       body : JSON.stringify(item)
     })
     .then((res)=>res.json())
-    .then((result)=>{console.log(result)})
+    .then((result)=>{
+      console.log(result)
+      navigate('/user/success')
+    })
     .catch((e)=>alert("Cannot upload Document"))
     console.log(item)
   }
@@ -52,7 +55,7 @@ export default function AddLoan() {
                 <button className="btn btn-primary"><img src="https://icons-for-free.com/iconfiles/png/512/box+document+outline+share+top+upload+icon-1320195323221671611.png" style={{height : "2rem", marginRight : "0rem"}}></img>Upload supporting documents</button>
                 <p id="text">{name}</p>
                 <input type="file" name="myfile" required onChange={(e)=>{setName(e.target.files[0].name)
-                setDoc([...documentupload, e.target.files[0]].name)}}/>
+                setDoc([...documentupload, e.target.files[0]])}}/>
               </div>
               <div className="submit_documents">
                 <button type="submit" id="applyLoanButton">Submit</button>

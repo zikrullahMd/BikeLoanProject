@@ -10,12 +10,14 @@ import ViewProfile from './components/user/ViewProfile';
 import ApplySuccess from './components/user/ApplySuccess';
 import AddDocument from './components/user/AddDocument'
 import LoanDetails from './components/admin/LoanDetails'
+import Accepted from './components/admin/Accepted'
 
 import {
   BrowserRouter as Router,
   Routes,
   Route
 } from "react-router-dom";
+import Rejected from './components/admin/Rejected';
 
 function App() {
   return (
@@ -36,6 +38,8 @@ function App() {
           <Route path='admin/login' element={< AdminLogin />}></Route>
           <Route path='admin/getAllLoans' element={< Dashboard />}></Route>
           <Route path='admin/loanDetails' element={< LoanDetails />}></Route>
+          <Route path='admin/Accepted' element={< Accepted />}></Route>
+          <Route path='admin/Rejected' element={< Rejected />}></Route>
           
         </Routes>
       </div>
