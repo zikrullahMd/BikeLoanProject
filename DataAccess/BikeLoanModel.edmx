@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BikeLoanDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="email" />
+          </Key>
+          <Property Name="email" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="12" />
+          <Property Name="mobileNumber" Type="varchar" MaxLength="10" />
+          <Property Name="userRole" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="documentid" />
+          </Key>
+          <Property Name="documentid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="documentType" Type="varchar" MaxLength="20" />
+          <Property Name="documentupload" Type="varbinary" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="LoanApplication">
+          <Key>
+            <PropertyRef Name="loanId" />
+          </Key>
+          <Property Name="loanId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="loantype" Type="varchar" MaxLength="10" />
+          <Property Name="applicantName" Type="varchar" MaxLength="25" />
+          <Property Name="applicantAddress" Type="varchar" MaxLength="20" />
+          <Property Name="applicantMobile" Type="varchar" MaxLength="10" />
+          <Property Name="applicantEmail" Type="varchar" MaxLength="50" />
+          <Property Name="applicantAadhar" Type="varchar" MaxLength="15" />
+          <Property Name="applicantPan" Type="varchar" MaxLength="15" />
+          <Property Name="applicantSalary" Type="varchar" MaxLength="10" />
+          <Property Name="loanAmount" Type="varchar" MaxLength="10" />
+          <Property Name="loanRepaymentMonths" Type="varchar" MaxLength="5" />
+          <Property Name="status" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="Login">
+          <Key>
+            <PropertyRef Name="email" />
+          </Key>
+          <Property Name="email" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="email" />
+          </Key>
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="15" />
+          <Property Name="username" Type="varchar" MaxLength="10" />
+          <Property Name="mobileNumber" Type="varchar" MaxLength="10" />
+          <Property Name="userRole" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityContainer Name="BikeLoanDBModelStoreContainer">
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Document" EntityType="Self.Document" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoanApplication" EntityType="Self.LoanApplication" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Login" EntityType="Self.Login" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BikeLoanDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="email" />
+          </Key>
+          <Property Name="email" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="mobileNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="userRole" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="documentid" />
+          </Key>
+          <Property Name="documentid" Type="Int32" Nullable="false" />
+          <Property Name="documentType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="documentupload" Type="Binary" MaxLength="200" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="LoanApplication">
+          <Key>
+            <PropertyRef Name="loanId" />
+          </Key>
+          <Property Name="loanId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="loantype" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="applicantName" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="applicantAddress" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="applicantMobile" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="applicantEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="applicantAadhar" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="applicantPan" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="applicantSalary" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="loanAmount" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="loanRepaymentMonths" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Login">
+          <Key>
+            <PropertyRef Name="email" />
+          </Key>
+          <Property Name="email" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="email" />
+          </Key>
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="username" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="mobileNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="userRole" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="BikeLoanDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="Self.Admin" />
+          <EntitySet Name="Documents" EntityType="Self.Document" />
+          <EntitySet Name="LoanApplications" EntityType="Self.LoanApplication" />
+          <EntitySet Name="Logins" EntityType="Self.Login" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BikeLoanDBModelStoreContainer" CdmEntityContainer="BikeLoanDBEntities">
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="BikeLoanDBModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="mobileNumber" ColumnName="mobileNumber" />
+                <ScalarProperty Name="userRole" ColumnName="userRole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Documents">
+            <EntityTypeMapping TypeName="BikeLoanDBModel.Document">
+              <MappingFragment StoreEntitySet="Document">
+                <ScalarProperty Name="documentid" ColumnName="documentid" />
+                <ScalarProperty Name="documentType" ColumnName="documentType" />
+                <ScalarProperty Name="documentupload" ColumnName="documentupload" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoanApplications">
+            <EntityTypeMapping TypeName="BikeLoanDBModel.LoanApplication">
+              <MappingFragment StoreEntitySet="LoanApplication">
+                <ScalarProperty Name="loanId" ColumnName="loanId" />
+                <ScalarProperty Name="loantype" ColumnName="loantype" />
+                <ScalarProperty Name="applicantName" ColumnName="applicantName" />
+                <ScalarProperty Name="applicantAddress" ColumnName="applicantAddress" />
+                <ScalarProperty Name="applicantMobile" ColumnName="applicantMobile" />
+                <ScalarProperty Name="applicantEmail" ColumnName="applicantEmail" />
+                <ScalarProperty Name="applicantAadhar" ColumnName="applicantAadhar" />
+                <ScalarProperty Name="applicantPan" ColumnName="applicantPan" />
+                <ScalarProperty Name="applicantSalary" ColumnName="applicantSalary" />
+                <ScalarProperty Name="loanAmount" ColumnName="loanAmount" />
+                <ScalarProperty Name="loanRepaymentMonths" ColumnName="loanRepaymentMonths" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Logins">
+            <EntityTypeMapping TypeName="BikeLoanDBModel.Login">
+              <MappingFragment StoreEntitySet="Login">
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="BikeLoanDBModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="mobileNumber" ColumnName="mobileNumber" />
+                <ScalarProperty Name="userRole" ColumnName="userRole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

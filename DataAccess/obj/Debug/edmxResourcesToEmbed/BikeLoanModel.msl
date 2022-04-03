@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BikeLoanDBModelStoreContainer" CdmEntityContainer="BikeLoanDBEntities">
+    <EntitySetMapping Name="Admins">
+      <EntityTypeMapping TypeName="BikeLoanDBModel.Admin">
+        <MappingFragment StoreEntitySet="Admin">
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="mobileNumber" ColumnName="mobileNumber" />
+          <ScalarProperty Name="userRole" ColumnName="userRole" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Documents">
+      <EntityTypeMapping TypeName="BikeLoanDBModel.Document">
+        <MappingFragment StoreEntitySet="Document">
+          <ScalarProperty Name="documentid" ColumnName="documentid" />
+          <ScalarProperty Name="documentType" ColumnName="documentType" />
+          <ScalarProperty Name="documentupload" ColumnName="documentupload" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LoanApplications">
+      <EntityTypeMapping TypeName="BikeLoanDBModel.LoanApplication">
+        <MappingFragment StoreEntitySet="LoanApplication">
+          <ScalarProperty Name="loanId" ColumnName="loanId" />
+          <ScalarProperty Name="loantype" ColumnName="loantype" />
+          <ScalarProperty Name="applicantName" ColumnName="applicantName" />
+          <ScalarProperty Name="applicantAddress" ColumnName="applicantAddress" />
+          <ScalarProperty Name="applicantMobile" ColumnName="applicantMobile" />
+          <ScalarProperty Name="applicantEmail" ColumnName="applicantEmail" />
+          <ScalarProperty Name="applicantAadhar" ColumnName="applicantAadhar" />
+          <ScalarProperty Name="applicantPan" ColumnName="applicantPan" />
+          <ScalarProperty Name="applicantSalary" ColumnName="applicantSalary" />
+          <ScalarProperty Name="loanAmount" ColumnName="loanAmount" />
+          <ScalarProperty Name="loanRepaymentMonths" ColumnName="loanRepaymentMonths" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Logins">
+      <EntityTypeMapping TypeName="BikeLoanDBModel.Login">
+        <MappingFragment StoreEntitySet="Login">
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="BikeLoanDBModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="mobileNumber" ColumnName="mobileNumber" />
+          <ScalarProperty Name="userRole" ColumnName="userRole" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
