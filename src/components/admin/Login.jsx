@@ -64,6 +64,10 @@ export default function Login() {
                 Didn't register as admin yet? &nbsp;
                 <Link to="/admin/signup">Signup</Link>
               </p>
+              <p>
+                Not Admin? &nbsp;
+                <Link to="/user/login">User Login</Link>
+              </p>
             </div>
           </div>
         </div>

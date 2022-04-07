@@ -31,6 +31,17 @@ const User = (props) => {
         .catch((err)=>console.log(err))
     }
 
+    const Delete = () =>{
+        fetch(`http://localhost:54754/admin/deleteLoan?loanId=${props.data.loanId}`,{
+            method : "DELETE"
+        })
+        .then((res)=>res.json())
+        .then((result)=>{
+            alert(result);
+        })
+        .catch((err)=>console.log(err))
+    }
+
     useEffect(()=>{
         console.log("you are here")
     })
@@ -53,6 +64,7 @@ const User = (props) => {
                 <button className="download_files_btn">Download files</button> &nbsp;
                 <button className="approve_btn" onClick={approved}>Approve</button> &nbsp;
                 <button className="reject_btn" onClick={reject}>Reject</button> &nbsp;
+                <button className="" style={{backgroundColor:"yellow"}} onClick={Delete}>Delete</button> &nbsp;
                 </div>
                 <br />
             </div>

@@ -20,17 +20,14 @@ export default function AddLoan() {
       documentType,
       documentupload
     }
-    console.log(documentupload)
-    fetch('http://localhost:54754/user/addDocument',{
-      method : "POST",
-      body : JSON.stringify(item)
-    })
+    console.log(typeof(documentupload))
+    const formData = new FormData();
+    formData.append('type',documentType);
+    formData.append('file',documentupload)
+    fetch(`http://localhost:54754/user/addDocument`,{formData})
     .then((res)=>res.json())
-    .then((result)=>{
-      console.log(result)
-      navigate('/user/success')
-    })
-    .catch((e)=>alert("Cannot upload Document"))
+    .then((result)=>console.log(result))
+    .catch((err)=>alert(err))
     console.log(item)
   }
   return (
@@ -40,7 +37,7 @@ export default function AddLoan() {
         <div className="addloan_form">
           <form onSubmit={addDoc}>
           </form>
-          <form onSubmit={addDoc}>
+          <form onSubmit={addDoc} encType="multipart/form-data">
             <div >
             <div>
             <label>Document Type</label>
@@ -55,7 +52,7 @@ export default function AddLoan() {
                 <button className="btn btn-primary"><img src="https://icons-for-free.com/iconfiles/png/512/box+document+outline+share+top+upload+icon-1320195323221671611.png" style={{height : "2rem", marginRight : "0rem"}}></img>Upload supporting documents</button>
                 <p id="text">{name}</p>
                 <input type="file" name="myfile" required onChange={(e)=>{setName(e.target.files[0].name)
-                setDoc([...documentupload, e.target.files[0]])}}/>
+                setDoc(e.target.files[0])}}/>
               </div>
               <div className="submit_documents">
                 <button type="submit" id="applyLoanButton">Submit</button>

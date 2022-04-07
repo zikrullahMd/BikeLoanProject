@@ -26,7 +26,7 @@ export default function Signup() {
       result = await result.json()
       console.log(result);
       if (result === "admin added") {
-        alert("hogaya")
+        alert("Signup Success")
         navigate("/admin/Login")
       }
     }catch(err){

@@ -28,7 +28,7 @@ export default function Dashboard(){
         localStorage.setItem("loan",JSON.stringify(result))
         setLoans(result);
         setBool(true);
-        console.log(result);
+        console.log(bool);
       })
       .catch((err)=>console.log(err))
   },[])
@@ -42,11 +42,11 @@ export default function Dashboard(){
             <p id="count_number"><strong>{loan.length}</strong> applicant(s) to verify</p>
           </div>
         </div>
-        {bool && loan.map((e)=>
+        {loan.length !== 0 && loan.map((e)=>
           <User data={e} id={e.loanId}/>
         )}
         {
-          !bool && <h1 style={{textAlign:"center"}}>No Loan Found</h1>
+          loan.length == 0 && <h1 style={{textAlign:"center"}}>No Loan Yet</h1>
         }
       </div>
     )

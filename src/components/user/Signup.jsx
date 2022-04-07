@@ -31,7 +31,7 @@ export default function Signup() {
     console.log(item);
     console.log(result);
     if (result === "user added") {
-      alert("hogaya")
+      alert("Signup Success")
       navigate("/");
     }
   }
