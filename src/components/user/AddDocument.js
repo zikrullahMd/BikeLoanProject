@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios'
+
 
 export default function AddLoan() {
   const[documentupload,setDoc] = useState([]);
@@ -14,21 +16,20 @@ export default function AddLoan() {
       navigate("/");
     }
   })
-  const addDoc = (e) =>{
+  const addDoc = async(e) =>{
     e.preventDefault();
-    const item = {
-      documentType,
-      documentupload
-    }
-    console.log(typeof(documentupload))
-    const formData = new FormData();
-    formData.append('type',documentType);
-    formData.append('file',documentupload)
-    fetch(`http://localhost:54754/user/addDocument`,{formData})
-    .then((res)=>res.json())
-    .then((result)=>console.log(result))
-    .catch((err)=>alert(err))
-    console.log(item)
+    const formData = new FormData(); 
+            formData.append('file',documentupload);  
+            formData.append('documentType',documentType);
+            const res = await axios.post(
+                    'http://localhost:54754/user/addDocument',
+                    formData
+            );
+            if(res != null){
+              navigate("/user/success")
+            }else{
+              alert("Could not add document")
+            }
   }
   return (
     <div>

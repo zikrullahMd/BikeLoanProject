@@ -55,9 +55,9 @@ const User = (props) => {
                 <p>
                     Applicant email: {props.data.applicantEmail}
                 </p>
-                <p>
-                    Loan amount: {props.data.loanAmount}
-                </p>
+                    <p>
+                        Loan amount: {props.data.loanAmount}
+                    </p>
                 <p>
                     Status: {props.data.status}
                 </p>
