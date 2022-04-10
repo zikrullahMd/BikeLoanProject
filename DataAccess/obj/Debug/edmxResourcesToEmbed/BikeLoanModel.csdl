@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BikeLoanDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="email" />
+    </Key>
+    <Property Name="email" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="mobileNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="userRole" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Document">
+    <Key>
+      <PropertyRef Name="documentid" />
+    </Key>
+    <Property Name="documentid" Type="Int32" Nullable="false" />
+    <Property Name="documentType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="documentupload" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="LoanApplication">
+    <Key>
+      <PropertyRef Name="loanId" />
+    </Key>
+    <Property Name="loanId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="loantype" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="applicantName" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="applicantAddress" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+    <Property Name="applicantMobile" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="applicantEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="applicantAadhar" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="applicantPan" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="applicantSalary" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="loanAmount" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="loanRepaymentMonths" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Login">
+    <Key>
+      <PropertyRef Name="email" />
+    </Key>
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="email" />
+    </Key>
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="username" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="mobileNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="userRole" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="BikeLoanDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Admins" EntityType="Self.Admin" />
+    <EntitySet Name="Documents" EntityType="Self.Document" />
+    <EntitySet Name="LoanApplications" EntityType="Self.LoanApplication" />
+    <EntitySet Name="Logins" EntityType="Self.Login" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+  </EntityContainer>
+</Schema>
