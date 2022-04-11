@@ -1,4 +1,5 @@
 import React,{useEffect} from 'react'
+import axios from 'axios'
 
 
 const User = (props) => {
@@ -42,9 +43,15 @@ const User = (props) => {
         .catch((err)=>console.log(err))
     }
 
-    useEffect(()=>{
-        console.log("you are here")
-    })
+    const download = async(e) =>{
+        
+        console.log("workin")
+        const id = sessionStorage.getItem("loanid")
+            const res = await axios.get(
+                    `http://localhost:54754/user/downloadDocument?fileId=${id}`
+            );
+            console.log(res);
+    }
     return(
         <div>
             <div className="applicants_list">
@@ -61,10 +68,10 @@ const User = (props) => {
                 <p>
                     Status: {props.data.status}
                 </p>
-                <button className="download_files_btn">Download files</button> &nbsp;
+                <button className="download_files_btn" button={download}>Download files</button> &nbsp;
                 <button className="approve_btn" onClick={approved}>Approve</button> &nbsp;
                 <button className="reject_btn" onClick={reject}>Reject</button> &nbsp;
-                <button className="" style={{backgroundColor:"yellow"}} onClick={Delete}>Delete</button> &nbsp;
+                <button  style={{backgroundColor:"yellow"}} onClick={Delete}>Delete</button> &nbsp;
                 </div>
                 <br />
             </div>

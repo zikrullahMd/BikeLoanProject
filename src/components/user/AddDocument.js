@@ -26,6 +26,7 @@ export default function AddLoan() {
                     formData
             );
             if(res != null){
+              sessionStorage.setItem('docid',res.data.id);
               navigate("/user/success")
             }else{
               alert("Could not add document")

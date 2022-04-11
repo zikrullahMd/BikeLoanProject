@@ -6,7 +6,8 @@ export default class ApplySuccess extends React.Component {
 
   
   loan_idx = {
-    id: sessionStorage.getItem("loanid")
+    id: sessionStorage.getItem("loanid"),
+    docid : sessionStorage.getItem('docid')
   }
 
   render() {
@@ -25,6 +26,9 @@ export default class ApplySuccess extends React.Component {
           <br />
           <p id="loan_sucess_id">
             Your Loan ID is: <strong>{this.loan_idx.id}</strong>
+          </p>
+          <p id="loan_sucess_id">
+            Your Document ID is: <strong>{this.loan_idx.docid}</strong>
           </p>
         </div>
       </div>
